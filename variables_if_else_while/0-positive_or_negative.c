@@ -7,10 +7,9 @@
 /* betty style doc for function main goes there */
 
 /**
- * main - Entry
- * get random number and print if number is >, = or < at 0
- *
- * Return : 0 if sucess
+ * main - Entry point
+ * get random number and print if n is >, = ou < at 0
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
