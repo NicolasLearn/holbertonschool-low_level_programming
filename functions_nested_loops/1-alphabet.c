@@ -17,7 +17,7 @@ int main(void)
  * function for print the alphabet in lowercase
  *
  */
-int print_alphabet(void)
+void print_alphabet(void)
 {
 	char count;
 
@@ -26,5 +26,4 @@ int print_alphabet(void)
 		_putchar(count);
 	}
 	_putchar(10);
-	return (0);
 }
