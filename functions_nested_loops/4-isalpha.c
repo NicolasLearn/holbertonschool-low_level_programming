@@ -12,7 +12,7 @@ int _isalpha(int c)
 {
 	char maVar = c;
 
-	if ((maVar >= 'a' && maVar <= 'z') && (maVar >= 'A' && maVar <= 'Z'))
+	if ((maVar >= 'a' && maVar <= 'z') || (maVar >= 'A' && maVar <= 'Z'))
 	{
 		return (1);
 	}
