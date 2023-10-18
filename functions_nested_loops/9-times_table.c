@@ -26,6 +26,10 @@ void times_table(void)
 				_putchar(32);
 				if (my_array[i][j] < 10)
 				{
+					if (my_array[i][j + 1] > 9)
+					{
+						break;
+					}
 					_putchar(32);
 				}
 				break;
