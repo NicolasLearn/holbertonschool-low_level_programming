@@ -14,16 +14,10 @@ char *_strdup(char *str)
 	char *tab = NULL;
 
 	count = 0;
+	if (str == NULL)
+		return (NULL);
 	while (str[count] != '\0')
 		count++;
-	if (count == 0)
-	{
-		tab = malloc(1);
-		if (tab == NULL)
-			return (NULL);
-		tab[0] = '\0';
-		return (tab);
-	}
 	tab = malloc((sizeof(char) * count) + 1);
 	if (tab == NULL)
 		return (NULL);
