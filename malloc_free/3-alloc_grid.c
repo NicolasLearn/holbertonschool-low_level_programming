@@ -16,8 +16,10 @@ int **alloc_grid(int width, int height)
 	int *tabTemp = NULL;
 	int i, j;
 
+	if (width <= 0 || height <= 0)
+		return (NULL);
 	tab = malloc(8 * height);
-	if (tab == NULL || width <= 0 || height <= 0)
+	if (tab == NULL)
 		return (NULL);
 	for (i = 0; i < height; i++)
 	{
