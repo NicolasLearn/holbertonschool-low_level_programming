@@ -9,12 +9,12 @@
  *
  * Description: the struct allowed to give information on a dog
  */
-struct dog
+typedef struct dog
 {
 	char *name;
 	float age;
 	char *owner;
-};
+} dog_t;
 
 #include "main.h"
 
