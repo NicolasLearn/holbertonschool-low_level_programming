@@ -1,6 +1,11 @@
 #ifndef __CALC_H__
 #define __CALC_H__
 
+	/*LIBRAIRY*/
+
+#include <stdlib.h>
+#include <stdio.h>
+
 	/*STUCT*/
 
 /**
