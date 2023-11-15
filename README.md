@@ -12,3 +12,6 @@ DIRECTORY :
 - malloc_free : project C - malloc, free
 - more_malloc_free : project C - more malloc, free
 - preprocessor : project C - preprocessor
+- structures_typedef : project C - structures, typedef
+- function_pointers : project C - function pointer
+- variadic_function : project C - variadic function
