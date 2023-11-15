@@ -3,16 +3,13 @@
 /**
  * get_op_func - select the correct function based on the operator
  * @s: operator
- * int: first number
- * int: second number
  *
  * Return: pointer to the function that corresponds with operator
  *	NULL if 's' is not an operator allowed
  */
 int (*get_op_func(char *s))(int, int)
 {
-	op_t ops[] = 
-	{
+	op_t ops[] = {
 		{"+", op_add},
 		{"-", op_sub},
 		{"*", op_mul},

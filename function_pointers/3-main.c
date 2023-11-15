@@ -3,6 +3,8 @@
 
 /**
  * main - entry point, calcul two integer
+ * @argc: number of function argument
+ * @argv: pointer array which contain value of arguments
  *
  * Return: 0 if sucess
  */
@@ -16,9 +18,7 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(98);
 	}
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[3]);
-	if ((num1 == 0) || (num2 == 0))
+	if (!(isdigit(argv[1][0])) || !(isdigit(argv[3][0])))
 	{
 		printf("Error\n");
 		exit(99);
@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(99);
 	}
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[3]);
 	printf("%d\n", adress(num1, num2));
 	return (0);
 }
