@@ -1,4 +1,4 @@
-DIRECTORY :
+DIRECTORY all project :
  
 - hello_world : project C - Hello, World
 - variables_if_else_while : project C - variable, if, else, while
