@@ -38,7 +38,7 @@ list_t *add_node(list_t **head, const char *str)
 	{
 		if (str == NULL)
 		{
-			element->str = "(nil)";
+			element->str = NULL;
 			element->len = 0;
 		}
 		else
@@ -46,10 +46,7 @@ list_t *add_node(list_t **head, const char *str)
 			element->str = strdup(str);
 			element->len = _strlen(element->str);
 		}
-		if (*head == NULL)
-			element->next = NULL;
-		else
-			element->next = *head;
+		element->next = *head;
 		*head = element;
 	}
 	return (element);

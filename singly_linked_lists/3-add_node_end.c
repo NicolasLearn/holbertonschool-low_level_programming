@@ -23,7 +23,7 @@ int _strlen(char *s)
  * @str: description
  *
  * Return: the address of the new newElement, or NULL if it failed.
-*/
+ */
 list_t *add_node_end(list_t **head, const char *str)
 {
 	list_t *newElement;
@@ -39,7 +39,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	{
 		if (str == NULL)
 		{
-			newElement->str = "(nil)";
+			newElement->str = NULL;
 			newElement->len = 0;
 		}
 		else
