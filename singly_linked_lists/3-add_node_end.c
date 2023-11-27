@@ -19,8 +19,8 @@ int _strlen(char *s)
 
 /**
  * add_node_end - adds a new node at the end of a "list_t list"
- * @head: description
- * @str: description
+ * @head: adress of variable head
+ * @str: pointer to the string to be dupplicate
  *
  * Return: the address of the new newElement, or NULL if it failed.
 */
@@ -39,7 +39,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	{
 		if (str == NULL)
 		{
-			newElement->str = "(nil)";
+			newElement->str = NULL;
 			newElement->len = 0;
 		}
 		else
