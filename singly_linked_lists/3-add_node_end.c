@@ -23,7 +23,7 @@ int _strlen(char *s)
  * @str: pointer to the string to be dupplicate
  *
  * Return: the address of the new newElement, or NULL if it failed.
-*/
+ */
 list_t *add_node_end(list_t **head, const char *str)
 {
 	list_t *newElement;
