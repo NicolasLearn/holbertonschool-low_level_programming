@@ -30,23 +30,22 @@ list_t *add_node_end(list_t **head, const char *str)
 	list_t *bufferElement = *head;
 
 	newElement = malloc(sizeof(list_t));
-	if (newElement == NULL)
+	if ((newElement == NULL) || (str == NULL))
 	{
 		free(newElement);
 		newElement = NULL;
 	}
 	else
 	{
-		if (str == NULL)
+		newElement->str = strdup(str);
+		if (newElement->str == NULL)
 		{
-			newElement->str = NULL;
-			newElement->len = 0;
+			free(newElement->str);
+			free(newElement);
+			newElement = NULL;
+			return (newElement);
 		}
-		else
-		{
-			newElement->str = strdup(str);
-			newElement->len = _strlen(newElement->str);
-		}
+		newElement->len = _strlen(newElement->str);
 		if (*head == NULL)
 			*head = newElement;
 		newElement->next = NULL;
