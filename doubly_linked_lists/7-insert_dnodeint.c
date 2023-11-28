@@ -43,16 +43,26 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	}
 	else
 	{
+		new_element->n = n;
 		while (current_index != idx)
 		{
 			current_index++;
 			head_temp = head_temp->next;
 		}
-		new_element->n = n;
-		head_temp->prev->next = new_element;
-		new_element->prev = head_temp->prev;
-		head_temp->prev = new_element;
-		new_element->next = head_temp;
+		if (idx == 0)
+		{
+			new_element->next = head_temp;
+			head_temp->prev = new_element;
+			new_element->prev = NULL;
+			*h = new_element;
+		}
+		else
+		{
+			head_temp->prev->next = new_element;
+			new_element->prev = head_temp->prev;
+			head_temp->prev = new_element;
+			new_element->next = head_temp;
+		}
 	}
 	return (new_element);
 }
