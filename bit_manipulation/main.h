@@ -11,6 +11,8 @@
 		/*PROTOTYPE*/
 /*---------------------------------------------------------------------------*/
 
+int _putchar(char c);
+
 unsigned int binary_to_uint(const char *b);
 	int check_str(const char *s);
 void print_binary(unsigned long int n);
