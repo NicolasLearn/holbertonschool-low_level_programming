@@ -31,7 +31,8 @@ int _strlen(char *s)
 */
 int close_func(int fd)
 {
-	close(fd);
+	if (fd != -1)
+		close(fd);
 	return (-1);
 }
 

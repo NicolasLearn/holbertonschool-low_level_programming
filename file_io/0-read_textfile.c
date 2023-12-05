@@ -9,8 +9,10 @@
 */
 ssize_t clear_func(char *buf, int fd)
 {
-	close(fd);
 	free(buf);
+	buf = NULL;
+	if (fd != -1)
+		close(fd);
 	return (0);
 }
 /*---------------------------------------------------------------------------*/
@@ -43,9 +45,11 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	int file_desc = 0;
 	char *buf_tab;
 
+	if (filename == NULL)
+		return (0);
 	file_desc = open(filename, O_RDONLY);
 	buf_tab = malloc(sizeof(char) * letters);
-	if ((filename == NULL) || (file_desc < 0) || (buf_tab == NULL))
+	if ((file_desc < 3) || (buf_tab == NULL))
 		return (clear_func(buf_tab, file_desc));
 	readed_char = read(file_desc, buf_tab, letters);
 	if (readed_char < 0)
@@ -55,7 +59,6 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (clear_func(buf_tab, file_desc));
 	if ((size_t)readed_char < letters)
 		printed_char += _putchar('\n');
-	close(file_desc);
-	free(buf_tab);
+	clear_func(buf_tab, file_desc);
 	return (printed_char);
 }
