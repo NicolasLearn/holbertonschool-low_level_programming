@@ -46,13 +46,13 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	file_desc = open(filename, O_RDONLY);
 	buf_tab = malloc(sizeof(char) * letters);
 	if ((filename == NULL) || (file_desc < 0) || (buf_tab == NULL))
-		return(clear_func(buf_tab, file_desc));
+		return (clear_func(buf_tab, file_desc));
 	readed_char = read(file_desc, buf_tab, letters);
 	if (readed_char < 0)
-		return(clear_func(buf_tab, file_desc));
+		return (clear_func(buf_tab, file_desc));
 	printed_char = write(STDOUT_FILENO, buf_tab, readed_char);
 	if ((printed_char < 0) || (printed_char != readed_char))
-		return(clear_func(buf_tab, file_desc));
+		return (clear_func(buf_tab, file_desc));
 	if ((size_t)readed_char < letters)
 		printed_char += _putchar('\n');
 	close(file_desc);
