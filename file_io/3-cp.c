@@ -13,6 +13,7 @@
 void close_file(int fd_1, int fd_2)
 {
 	int close_val = close(fd_1);
+
 	if (close_val == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_1);
