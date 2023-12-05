@@ -23,4 +23,5 @@ int append_text_to_file(const char *filename, char *text_content);
 	int close_func(int fd);
 void close_file(int f1, int f2);
 void error_file(char *argv, int exit_val);
+
 #endif

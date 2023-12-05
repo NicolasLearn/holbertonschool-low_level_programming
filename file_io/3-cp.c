@@ -1,6 +1,10 @@
 #include "main.h"
 #include <stdio.h>
 
+/*---------------------------------------------------------------------------*/
+		/*CLOSE_FILE*/
+/*---------------------------------------------------------------------------*/
+
 /**
  * close_file - close and check if the file is close.
  * @f1: file descriptor file 1
@@ -20,6 +24,10 @@ void close_file(int f1, int f2)
 	}
 }
 
+/*---------------------------------------------------------------------------*/
+		/*ERROR_FILE*/
+/*---------------------------------------------------------------------------*/
+
 /**
  * error_file - print error message and exit the function
  * @argv: pointer to the value of the argument
@@ -37,6 +45,10 @@ void error_file(char *argv, int exit_val)
 	exit(exit_val);
 }
 
+/*---------------------------------------------------------------------------*/
+		/*MAIN*/
+/*---------------------------------------------------------------------------*/
+
 /**
  * main - copies the content of a file to another file.
  * @argc: number of parameter of compilation.
@@ -47,7 +59,7 @@ void error_file(char *argv, int exit_val)
 int main(int argc, char *argv[])
 {
 	int file_desc_from, file_desc_new;
-	ssize_t readed_char, writed_char;
+	ssize_t readed_char = 1024, writed_char;
 	char buf_tab[1024];
 
 	if (argc != 3)
@@ -56,12 +68,10 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 	file_desc_from = open(argv[1], O_RDONLY);
-	readed_char = read(file_desc_from, buf_tab, 1024);
-	if ((argv[1] == NULL) || (file_desc_from == -1) || (readed_char == -1))
+	if ((argv[1] == NULL) || (file_desc_from == -1))
 		error_file(argv[1], 98);
-	file_desc_new = open(argv[2], O_WRONLY | O_TRUNC | O_APPEND | O_CREAT, 0664);
-	writed_char = write(file_desc_new, buf_tab, readed_char);
-	if ((argv[2] == NULL) || (file_desc_new == -1) || (writed_char == -1))
+	file_desc_new = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT | O_APPEND, 0664);
+	if (file_desc_new == -1)
 		error_file(argv[2], 99);
 	while (readed_char == 1024)
 	{
@@ -69,7 +79,7 @@ int main(int argc, char *argv[])
 		if (readed_char == -1)
 			error_file(argv[1], 98);
 		writed_char = write(file_desc_new, buf_tab, readed_char);
-		if (writed_char == -1)
+		if ((writed_char == -1) || (writed_char != readed_char))
 			error_file(argv[1], 99);
 	}
 	close_file(file_desc_from, file_desc_new);
