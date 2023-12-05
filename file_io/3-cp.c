@@ -7,19 +7,21 @@
 
 /**
  * close_file - close and check if the file is close.
- * @f1: file descriptor file 1
- * @f2: file descriptor file 2
+ * @fd_1: file descriptor file 1.
+ * @fd_2: file descriptor file 2.
 */
-void close_file(int f1, int f2)
+void close_file(int fd_1, int fd_2)
 {
-	if ((close(f1)) == -1)
+	int close_val = close(fd_1);
+	if (close_val == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", f1);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_1);
 		exit(100);
 	}
-	if ((close(f2)) == -1)
+	close_val = close(fd_2);
+	if (close_val == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", f2);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_2);
 		exit(100);
 	}
 }
@@ -60,7 +62,7 @@ int main(int argc, char *argv[])
 {
 	int file_desc_from, file_desc_new;
 	ssize_t readed_char = 1024, writed_char;
-	char buf_tab[1024];
+	char buf_tab[1025];
 
 	if (argc != 3)
 	{
