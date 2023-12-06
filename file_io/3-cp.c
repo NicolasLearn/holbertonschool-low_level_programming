@@ -12,15 +12,12 @@
 */
 void close_file(int fd_1, int fd_2)
 {
-	int close_val = close(fd_1);
-
-	if (close_val == -1)
+	if ((close(fd_1)) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_1);
 		exit(100);
 	}
-	close_val = close(fd_2);
-	if (close_val == -1)
+	if ((close(fd_2)) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_2);
 		exit(100);
@@ -36,15 +33,22 @@ void close_file(int fd_1, int fd_2)
  * @argv: pointer to the value of the argument
  * @exit_val: exit value matching with the error
 */
-void error_file(char *argv, int exit_val)
+void error_file(char *argv[], int exit_val)
 {
 	char *str;
+	int index;
 
 	if (exit_val == 98)
-		str = "read from";
+	{
+		str = "read from file";
+		index = 1;
+	}
 	else
+	{
 		str = "write to";
-	dprintf(STDERR_FILENO, "Error: Can't %s file %s\n", str, argv);
+		index = 2;
+	}
+	dprintf(STDERR_FILENO, "Error: Can't %s %s\n", str, argv[index]);
 	exit(exit_val);
 }
 
@@ -63,7 +67,7 @@ int main(int argc, char *argv[])
 {
 	int file_desc_from, file_desc_new;
 	ssize_t readed_char = 1024, writed_char;
-	char buf_tab[1025];
+	char buf_tab[1024];
 
 	if (argc != 3)
 	{
@@ -71,19 +75,19 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 	file_desc_from = open(argv[1], O_RDONLY);
-	if ((argv[1] == NULL) || (file_desc_from == -1))
-		error_file(argv[1], 98);
+	if (file_desc_from == -1)
+		error_file(argv, 98);
 	file_desc_new = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT | O_APPEND, 0664);
 	if (file_desc_new == -1)
-		error_file(argv[2], 99);
+		error_file(argv, 99);
 	while (readed_char == 1024)
 	{
 		readed_char = read(file_desc_from, buf_tab, 1024);
 		if (readed_char == -1)
-			error_file(argv[1], 98);
+			error_file(argv, 98);
 		writed_char = write(file_desc_new, buf_tab, readed_char);
 		if ((writed_char == -1) || (writed_char != readed_char))
-			error_file(argv[1], 99);
+			error_file(argv, 99);
 	}
 	close_file(file_desc_from, file_desc_new);
 	return (0);
