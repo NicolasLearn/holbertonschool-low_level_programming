@@ -49,24 +49,27 @@ void hash_table_delete(hash_table_t *ht)
 	hash_node_t *buf_cur, *buf_next;
 	int index;
 
-	if ((ht == NULL) || (ht->array == NULL))
+	if (ht == NULL)
 		return;
-	for (index = (ht->size) - 1; index >= 0; index--)
+	if (ht->array != NULL)
 	{
-		buf_cur = ht->array[index];
-		if (buf_cur != NULL)
+		for (index = (ht->size) - 1; index >= 0; index--)
 		{
-			if (buf_cur->next != NULL)
+			buf_cur = ht->array[index];
+			if (buf_cur != NULL)
 			{
-				buf_next = buf_cur->next;
-				while (buf_next != NULL)
+				if (buf_cur->next != NULL)
 				{
-					clear_node(buf_cur);
-					buf_cur = buf_next;
 					buf_next = buf_cur->next;
+					while (buf_next != NULL)
+					{
+						clear_node(buf_cur);
+						buf_cur = buf_next;
+						buf_next = buf_cur->next;
+					}
 				}
+				clear_node(buf_cur);
 			}
-			clear_node(buf_cur);
 		}
 	}
 	clear_table(ht);
